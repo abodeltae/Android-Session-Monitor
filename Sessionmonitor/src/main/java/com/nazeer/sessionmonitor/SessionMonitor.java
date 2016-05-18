@@ -31,6 +31,7 @@ public class SessionMonitor {
         values.put(DataBaseHelper.SESSION_TABLE_ClASS_NAME_COLUMN,entry.getName());
         values.put(DataBaseHelper.SESSION_TABLE_START_TIME_MILLIS_COLUMN,entry.getStartTimeMillis());
         values.put(DataBaseHelper.SESSION_TABLE_END_TIME_MILLIS_COLUMN,entry.getEndTimeMillis());
+        values.put(DataBaseHelper.SESSION_TABLE_DURATION_MILLIS_COLUMN,entry.getEndTimeMillis()-entry.getStartTimeMillis());
         database.insert(DataBaseHelper.SESSIONS_TABLE_NAME,null,values);
         database.close();
     }
@@ -41,6 +42,7 @@ public class SessionMonitor {
         entry.setName(cursor.getString(cursor.getColumnIndex(DataBaseHelper.SESSION_TABLE_ClASS_NAME_COLUMN)));
         entry.setStartTimeMillis(cursor.getInt(cursor.getColumnIndex(DataBaseHelper.SESSION_TABLE_START_TIME_MILLIS_COLUMN)));
         entry.setEndTimeMillis(cursor.getInt(cursor.getColumnIndex(DataBaseHelper.SESSION_TABLE_END_TIME_MILLIS_COLUMN)));
+        entry.setDurationMillis(cursor.getInt(cursor.getColumnIndex(DataBaseHelper.SESSION_TABLE_DURATION_MILLIS_COLUMN)));
         return entry;
     }
 

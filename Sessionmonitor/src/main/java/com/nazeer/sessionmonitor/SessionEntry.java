@@ -5,7 +5,7 @@ package com.nazeer.sessionmonitor;
  */
 public class SessionEntry {
     private String name ;
-    private int id, startTimeMillis,endTimeMillis;
+    private int id, startTimeMillis,endTimeMillis,durationMillis;
 
     public String getName() {
         return name;
@@ -37,5 +37,13 @@ public class SessionEntry {
 
     public void setEndTimeMillis(int endTimeMillis) {
         this.endTimeMillis = endTimeMillis;
+    }
+
+    public int getDurationMillis() {
+        return durationMillis;
+    }
+
+    public void setDurationMillis(int durationMillis) {
+        this.durationMillis = durationMillis;
     }
 }
