@@ -7,7 +7,7 @@ import java.util.ArrayList;
  */
 public class ClassReportItem {
     private String name;
-    private int totalDuration;
+    private long totalDuration;
     private ArrayList<SessionEntry> sessionEntries;
 
     public String getName() {
@@ -18,11 +18,11 @@ public class ClassReportItem {
         this.name = name;
     }
 
-    public int getTotalDuration() {
+    public long getTotalDuration() {
         return totalDuration;
     }
 
-    public void setTotalDuration(int totalDuration) {
+    public void setTotalDuration(long totalDuration) {
         this.totalDuration = totalDuration;
     }
 

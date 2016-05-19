@@ -5,7 +5,7 @@ package com.nazeer.sessionmonitor;
  */
 public class SessionEntry {
     private String name ,type ;
-    private int id, startTimeMillis,endTimeMillis,durationMillis;
+    private long id, startTimeMillis,endTimeMillis,durationMillis;
 
     public String getName() {
         return name;
@@ -15,35 +15,35 @@ public class SessionEntry {
         this.name = name;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
-    public int getStartTimeMillis() {
+    public long getStartTimeMillis() {
         return startTimeMillis;
     }
 
-    public void setStartTimeMillis(int startTimeMillis) {
+    public void setStartTimeMillis(long startTimeMillis) {
         this.startTimeMillis = startTimeMillis;
     }
 
-    public int getEndTimeMillis() {
+    public long getEndTimeMillis() {
         return endTimeMillis;
     }
 
-    public void setEndTimeMillis(int endTimeMillis) {
+    public void setEndTimeMillis(long endTimeMillis) {
         this.endTimeMillis = endTimeMillis;
     }
 
-    public int getDurationMillis() {
+    public long getDurationMillis() {
         return durationMillis;
     }
 
-    public void setDurationMillis(int durationMillis) {
+    public void setDurationMillis(long durationMillis) {
         this.durationMillis = durationMillis;
     }
 

@@ -10,18 +10,18 @@ import java.util.ArrayList;
 /**
  * Created by nazeer on 18/05/16.
  */
-public class SessionMonitor {
-    private static SessionMonitor instance;
+public class SessionMonitorManager {
+    private static SessionMonitorManager instance;
     private Context context;
     private DataBaseHelper helper;
-    private SessionMonitor(){
+    private SessionMonitorManager(){
 
     }
     public void init(Context context){
         helper=new DataBaseHelper(context);
 
     }
-    public static SessionMonitor getInstance(){
+    public static SessionMonitorManager getInstance(){
         return instance;
     }
 
@@ -39,11 +39,11 @@ public class SessionMonitor {
 
     public SessionEntry parseSessionEntryFromCursor(Cursor cursor){
         SessionEntry entry=new SessionEntry();
-        entry.setId(cursor.getInt(cursor.getColumnIndex(DataBaseHelper.SESSION_TABLE_ID_COLUMN)));
+        entry.setId(cursor.getLong(cursor.getColumnIndex(DataBaseHelper.SESSION_TABLE_ID_COLUMN)));
         entry.setName(cursor.getString(cursor.getColumnIndex(DataBaseHelper.SESSION_TABLE_ClASS_NAME_COLUMN)));
-        entry.setStartTimeMillis(cursor.getInt(cursor.getColumnIndex(DataBaseHelper.SESSION_TABLE_START_TIME_MILLIS_COLUMN)));
-        entry.setEndTimeMillis(cursor.getInt(cursor.getColumnIndex(DataBaseHelper.SESSION_TABLE_END_TIME_MILLIS_COLUMN)));
-        entry.setDurationMillis(cursor.getInt(cursor.getColumnIndex(DataBaseHelper.SESSION_TABLE_DURATION_MILLIS_COLUMN)));
+        entry.setStartTimeMillis(cursor.getLong(cursor.getColumnIndex(DataBaseHelper.SESSION_TABLE_START_TIME_MILLIS_COLUMN)));
+        entry.setEndTimeMillis(cursor.getLong(cursor.getColumnIndex(DataBaseHelper.SESSION_TABLE_END_TIME_MILLIS_COLUMN)));
+        entry.setDurationMillis(cursor.getLong(cursor.getColumnIndex(DataBaseHelper.SESSION_TABLE_DURATION_MILLIS_COLUMN)));
         entry.setType(cursor.getString(cursor.getColumnIndex(DataBaseHelper.SESSION_TABLE_ClASS_TYPE_COLUMN)));
         return entry;
     }
@@ -103,25 +103,25 @@ public class SessionMonitor {
         return item;
     }
 
-    public int getTotalDurationForClass(String className) {
+    public long getTotalDurationForClass(String className) {
         SQLiteDatabase database = helper.getWritableDatabase();
         String query=String.format("select sum(%s) from %s where %s=%s",DataBaseHelper.SESSION_TABLE_DURATION_MILLIS_COLUMN,
                 DataBaseHelper.SESSIONS_TABLE_NAME,DataBaseHelper.SESSION_TABLE_ClASS_NAME_COLUMN,className);
         Cursor cursor=database.rawQuery(query,null);
         if(cursor.moveToFirst()){
-            int sum=cursor.getInt(cursor.getColumnIndex("sum"));
+            long sum=cursor.getLong(cursor.getColumnIndex("sum"));
             return sum;
         }
         return 0;
     }
 
-    public int getTotalDurationForType(String type) {
+    public long getTotalDurationForType(String type) {
         SQLiteDatabase database = helper.getWritableDatabase();
         String query=String.format("select sum(%s) from %s where %s=%s",DataBaseHelper.SESSION_TABLE_DURATION_MILLIS_COLUMN,
                 DataBaseHelper.SESSIONS_TABLE_NAME,DataBaseHelper.SESSION_TABLE_ClASS_TYPE_COLUMN,type);
         Cursor cursor=database.rawQuery(query,null);
         if(cursor.moveToFirst()){
-            int sum=cursor.getInt(cursor.getColumnIndex("sum"));
+            long sum=cursor.getLong(cursor.getColumnIndex("sum"));
             return sum;
         }
         return 0;
