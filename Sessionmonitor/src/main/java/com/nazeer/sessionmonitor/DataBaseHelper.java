@@ -14,7 +14,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     public static final String SESSIONS_TABLE_NAME="SESSIONS_TABLE";
     public static final String SESSION_TABLE_ID_COLUMN="ID", SESSION_TABLE_ClASS_NAME_COLUMN ="NAME"
             , SESSION_TABLE_START_TIME_MILLIS_COLUMN ="StartTimeMILLIS", SESSION_TABLE_END_TIME_MILLIS_COLUMN ="ENDTimeMILLIS",
-            SESSION_TABLE_DURATION_MILLIS_COLUMN="DurationMillis";
+            SESSION_TABLE_DURATION_MILLIS_COLUMN="DurationMillis",SESSION_TABLE_ClASS_TYPE_COLUMN="ClassType";
 
     public DataBaseHelper(Context context) {
         super(context, DATABASE_NAME,null, DATABASE_VERSION);
@@ -26,9 +26,10 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         buildSessionsTableQuery="CREATE TABLE "+SESSIONS_TABLE_NAME +"("+
                   SESSION_TABLE_ID_COLUMN+" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL , " +
                 SESSION_TABLE_START_TIME_MILLIS_COLUMN +" INTEGER NOT NULL ," +
-                SESSION_TABLE_END_TIME_MILLIS_COLUMN +" INTEGER NOT NULL " +
-                SESSION_TABLE_DURATION_MILLIS_COLUMN+ "INTEGER NOT NULL "+
-                SESSION_TABLE_ClASS_NAME_COLUMN+" TEXT NOT NULL UNIQUE " +
+                SESSION_TABLE_END_TIME_MILLIS_COLUMN +" INTEGER NOT NULL ," +
+                SESSION_TABLE_DURATION_MILLIS_COLUMN+ "INTEGER NOT NULL ,"+
+                SESSION_TABLE_ClASS_NAME_COLUMN+" TEXT NOT NULL UNIQUE ," +
+                SESSION_TABLE_ClASS_TYPE_COLUMN+" TEXT "+
                 ");";
     }
 

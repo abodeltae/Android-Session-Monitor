@@ -32,6 +32,7 @@ public class SessionMonitor {
         values.put(DataBaseHelper.SESSION_TABLE_START_TIME_MILLIS_COLUMN,entry.getStartTimeMillis());
         values.put(DataBaseHelper.SESSION_TABLE_END_TIME_MILLIS_COLUMN,entry.getEndTimeMillis());
         values.put(DataBaseHelper.SESSION_TABLE_DURATION_MILLIS_COLUMN,entry.getEndTimeMillis()-entry.getStartTimeMillis());
+        values.put(DataBaseHelper.SESSION_TABLE_ClASS_TYPE_COLUMN,entry.getType());
         database.insert(DataBaseHelper.SESSIONS_TABLE_NAME,null,values);
         database.close();
     }
@@ -43,6 +44,7 @@ public class SessionMonitor {
         entry.setStartTimeMillis(cursor.getInt(cursor.getColumnIndex(DataBaseHelper.SESSION_TABLE_START_TIME_MILLIS_COLUMN)));
         entry.setEndTimeMillis(cursor.getInt(cursor.getColumnIndex(DataBaseHelper.SESSION_TABLE_END_TIME_MILLIS_COLUMN)));
         entry.setDurationMillis(cursor.getInt(cursor.getColumnIndex(DataBaseHelper.SESSION_TABLE_DURATION_MILLIS_COLUMN)));
+        entry.setType(cursor.getString(cursor.getColumnIndex(DataBaseHelper.SESSION_TABLE_ClASS_TYPE_COLUMN)));
         return entry;
     }
 
@@ -69,6 +71,76 @@ public class SessionMonitor {
         database.close();
         return list;
     }
+
+    public ArrayList<String >getEntryNames(){
+        SQLiteDatabase database = helper.getWritableDatabase();
+        String query=" SELECT DISTINCT "+DataBaseHelper.SESSION_TABLE_ClASS_NAME_COLUMN+ " FROM "+DataBaseHelper.SESSION_TABLE_ClASS_NAME_COLUMN;
+        Cursor cursor=database.rawQuery(query,null);
+        ArrayList<String>list=new ArrayList<>();
+        while (cursor.moveToNext()){
+            list.add(cursor.getString(cursor.getColumnIndex(DataBaseHelper.SESSION_TABLE_ClASS_NAME_COLUMN)));
+        }
+        database.close();
+        return list;
+    }
+    public ArrayList<String>getTypes(){
+        SQLiteDatabase database = helper.getWritableDatabase();
+        String query=" SELECT DISTINCT "+DataBaseHelper.SESSION_TABLE_ClASS_TYPE_COLUMN+ " FROM "+DataBaseHelper.SESSION_TABLE_ClASS_NAME_COLUMN;
+        Cursor cursor=database.rawQuery(query,null);
+        ArrayList<String>list=new ArrayList<>();
+        while (cursor.moveToNext()){
+            list.add(cursor.getString(cursor.getColumnIndex(DataBaseHelper.SESSION_TABLE_ClASS_NAME_COLUMN)));
+        }
+        database.close();
+        return list;
+    }
+
+    public ClassReportItem getClassReport(String className){
+        ClassReportItem item=new ClassReportItem();
+        item.setName(className);
+        item.setSessionEntries(getEntries(className));
+        item.setTotalDuration(getTotalDurationForClass(className));
+        return item;
+    }
+
+    public int getTotalDurationForClass(String className) {
+        SQLiteDatabase database = helper.getWritableDatabase();
+        String query=String.format("select sum(%s) from %s where %s=%s",DataBaseHelper.SESSION_TABLE_DURATION_MILLIS_COLUMN,
+                DataBaseHelper.SESSIONS_TABLE_NAME,DataBaseHelper.SESSION_TABLE_ClASS_NAME_COLUMN,className);
+        Cursor cursor=database.rawQuery(query,null);
+        if(cursor.moveToFirst()){
+            int sum=cursor.getInt(cursor.getColumnIndex("sum"));
+            return sum;
+        }
+        return 0;
+    }
+
+    public int getTotalDurationForType(String type) {
+        SQLiteDatabase database = helper.getWritableDatabase();
+        String query=String.format("select sum(%s) from %s where %s=%s",DataBaseHelper.SESSION_TABLE_DURATION_MILLIS_COLUMN,
+                DataBaseHelper.SESSIONS_TABLE_NAME,DataBaseHelper.SESSION_TABLE_ClASS_TYPE_COLUMN,type);
+        Cursor cursor=database.rawQuery(query,null);
+        if(cursor.moveToFirst()){
+            int sum=cursor.getInt(cursor.getColumnIndex("sum"));
+            return sum;
+        }
+        return 0;
+    }
+
+
+    public ArrayList<ClassReportItem> getReportForClasses(ArrayList<String>classNames){
+        ArrayList <ClassReportItem>list=new ArrayList<>();
+        for (int i = 0; i <classNames.size() ; i++) {
+            list.add(getClassReport(classNames.get(i)));
+        }
+        return list;
+    }
+
+     public ArrayList<ClassReportItem> getReportForAllclasses(){
+        ArrayList<String> classNames = getEntryNames();
+        return getReportForClasses(classNames);
+    }
+
 
 
 

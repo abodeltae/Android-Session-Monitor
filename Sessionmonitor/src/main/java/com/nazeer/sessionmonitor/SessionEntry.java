@@ -4,7 +4,7 @@ package com.nazeer.sessionmonitor;
  * Created by nazeer on 18/05/16.
  */
 public class SessionEntry {
-    private String name ;
+    private String name ,type ;
     private int id, startTimeMillis,endTimeMillis,durationMillis;
 
     public String getName() {
@@ -45,5 +45,13 @@ public class SessionEntry {
 
     public void setDurationMillis(int durationMillis) {
         this.durationMillis = durationMillis;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 }
