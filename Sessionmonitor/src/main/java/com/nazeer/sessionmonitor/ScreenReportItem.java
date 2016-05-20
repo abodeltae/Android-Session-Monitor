@@ -5,7 +5,7 @@ import java.util.ArrayList;
 /**
  * Created by nazeer on 19/05/16.
  */
-public class ClassReportItem {
+public class ScreenReportItem {
     private String name;
     private long totalDuration;
     private ArrayList<SessionEntry> sessionEntries;
