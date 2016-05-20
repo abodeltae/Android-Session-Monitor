@@ -9,7 +9,7 @@ import android.database.sqlite.SQLiteOpenHelper;
  */
 public class DataBaseHelper extends SQLiteOpenHelper {
     private static final String DATABASE_NAME="MONITOR_DB";
-    private static final int DATABASE_VERSION=1;
+    private static final int DATABASE_VERSION=2;
     private static  String buildSessionsTableQuery;
     public static final String SESSIONS_TABLE_NAME="SESSIONS_TABLE";
     public static final String SESSION_TABLE_ID_COLUMN="ID", SESSION_TABLE_ClASS_NAME_COLUMN ="NAME"
@@ -28,7 +28,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
                 SESSION_TABLE_START_TIME_MILLIS_COLUMN +" INTEGER NOT NULL ," +
                 SESSION_TABLE_END_TIME_MILLIS_COLUMN +" INTEGER NOT NULL , " +
                 SESSION_TABLE_DURATION_MILLIS_COLUMN+ " INTEGER NOT NULL , "+
-                SESSION_TABLE_ClASS_NAME_COLUMN+" TEXT NOT NULL UNIQUE , " +
+                SESSION_TABLE_ClASS_NAME_COLUMN+" TEXT NOT NULL , " +
                 SESSION_TABLE_ClASS_TYPE_COLUMN+" TEXT "+
                 ");";
     }

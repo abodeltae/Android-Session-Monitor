@@ -4,6 +4,7 @@ import android.app.Application;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
 
 import java.util.ArrayList;
@@ -21,6 +22,8 @@ public class SessionMonitorManager {
     public static void init(Application applicationContext){
         helper=new DataBaseHelper(applicationContext);
         instance=new SessionMonitorManager();
+        instance.applicationContext=applicationContext;
+
 
     }
     public static SessionMonitorManager getInstance(){
@@ -65,10 +68,11 @@ public class SessionMonitorManager {
     }
 
     public ArrayList<SessionEntry> getEntries(String className){
+        className=DatabaseUtils.sqlEscapeString(className);
         SQLiteDatabase database = helper.getWritableDatabase();
         String query="select * from "+ DataBaseHelper.SESSIONS_TABLE_NAME+
                 " where "+DataBaseHelper.SESSION_TABLE_ClASS_NAME_COLUMN+" = "+className;
-        Cursor cursor=database.rawQuery(query+DataBaseHelper.SESSIONS_TABLE_NAME,null);
+        Cursor cursor=database.rawQuery(query,null);
         ArrayList <SessionEntry> list=new ArrayList<>();
         while (cursor.moveToNext()){
             list.add(parseSessionEntryFromCursor(cursor));
@@ -79,7 +83,7 @@ public class SessionMonitorManager {
 
     public ArrayList<String >getEntryNames(){
         SQLiteDatabase database = helper.getWritableDatabase();
-        String query=" SELECT DISTINCT "+DataBaseHelper.SESSION_TABLE_ClASS_NAME_COLUMN+ " FROM "+DataBaseHelper.SESSION_TABLE_ClASS_NAME_COLUMN;
+        String query=" SELECT DISTINCT "+DataBaseHelper.SESSION_TABLE_ClASS_NAME_COLUMN+ " FROM "+DataBaseHelper.SESSIONS_TABLE_NAME;
         Cursor cursor=database.rawQuery(query,null);
         ArrayList<String>list=new ArrayList<>();
         while (cursor.moveToNext()){
@@ -90,11 +94,11 @@ public class SessionMonitorManager {
     }
     public ArrayList<String>getTypes(){
         SQLiteDatabase database = helper.getWritableDatabase();
-        String query=" SELECT DISTINCT "+DataBaseHelper.SESSION_TABLE_ClASS_TYPE_COLUMN+ " FROM "+DataBaseHelper.SESSION_TABLE_ClASS_NAME_COLUMN;
+        String query=" SELECT DISTINCT "+DataBaseHelper.SESSION_TABLE_ClASS_TYPE_COLUMN+ " FROM "+DataBaseHelper.SESSIONS_TABLE_NAME;
         Cursor cursor=database.rawQuery(query,null);
         ArrayList<String>list=new ArrayList<>();
         while (cursor.moveToNext()){
-            list.add(cursor.getString(cursor.getColumnIndex(DataBaseHelper.SESSION_TABLE_ClASS_NAME_COLUMN)));
+            list.add(cursor.getString(cursor.getColumnIndex(DataBaseHelper.SESSION_TABLE_ClASS_TYPE_COLUMN)));
         }
         database.close();
         return list;
@@ -109,24 +113,26 @@ public class SessionMonitorManager {
     }
 
     public long getTotalDurationForClass(String className) {
+        className=DatabaseUtils.sqlEscapeString(className);
         SQLiteDatabase database = helper.getWritableDatabase();
-        String query=String.format("select sum(%s) from %s where %s=%s",DataBaseHelper.SESSION_TABLE_DURATION_MILLIS_COLUMN,
+        String query=String.format("select sum(%s) as sumResult from %s where %s=%s",DataBaseHelper.SESSION_TABLE_DURATION_MILLIS_COLUMN,
                 DataBaseHelper.SESSIONS_TABLE_NAME,DataBaseHelper.SESSION_TABLE_ClASS_NAME_COLUMN,className);
         Cursor cursor=database.rawQuery(query,null);
         if(cursor.moveToFirst()){
-            long sum=cursor.getLong(cursor.getColumnIndex("sum"));
+            long sum=cursor.getLong(cursor.getColumnIndex("sumResult"));
             return sum;
         }
         return 0;
     }
 
     public long getTotalDurationForType(String type) {
+        type=DatabaseUtils.sqlEscapeString(type);
         SQLiteDatabase database = helper.getWritableDatabase();
-        String query=String.format("select sum(%s) from %s where %s=%s",DataBaseHelper.SESSION_TABLE_DURATION_MILLIS_COLUMN,
+        String query=String.format("select sum(%s) as sumResult from %s where %s=%s",DataBaseHelper.SESSION_TABLE_DURATION_MILLIS_COLUMN,
                 DataBaseHelper.SESSIONS_TABLE_NAME,DataBaseHelper.SESSION_TABLE_ClASS_TYPE_COLUMN,type);
         Cursor cursor=database.rawQuery(query,null);
         if(cursor.moveToFirst()){
-            long sum=cursor.getLong(cursor.getColumnIndex("sum"));
+            long sum=cursor.getLong(cursor.getColumnIndex("sumResult"));
             return sum;
         }
         return 0;
