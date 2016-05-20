@@ -1,5 +1,6 @@
 package com.nazeer.sessionmonitor;
 
+import android.app.Application;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -12,16 +13,20 @@ import java.util.ArrayList;
  */
 public class SessionMonitorManager {
     private static SessionMonitorManager instance;
-    private Context context;
-    private DataBaseHelper helper;
+    private Application applicationContext;
+    private static DataBaseHelper helper;
     private SessionMonitorManager(){
 
     }
-    public void init(Context context){
-        helper=new DataBaseHelper(context);
+    public static void init(Application applicationContext){
+        helper=new DataBaseHelper(applicationContext);
+        instance=new SessionMonitorManager();
 
     }
     public static SessionMonitorManager getInstance(){
+        if(instance==null){
+            throw new RuntimeException("You must call the method init first");
+        }
         return instance;
     }
 
@@ -31,7 +36,7 @@ public class SessionMonitorManager {
         values.put(DataBaseHelper.SESSION_TABLE_ClASS_NAME_COLUMN,entry.getName());
         values.put(DataBaseHelper.SESSION_TABLE_START_TIME_MILLIS_COLUMN,entry.getStartTimeMillis());
         values.put(DataBaseHelper.SESSION_TABLE_END_TIME_MILLIS_COLUMN,entry.getEndTimeMillis());
-        values.put(DataBaseHelper.SESSION_TABLE_DURATION_MILLIS_COLUMN,entry.getEndTimeMillis()-entry.getStartTimeMillis());
+        values.put(DataBaseHelper.SESSION_TABLE_DURATION_MILLIS_COLUMN,entry.getDurationMillis());
         values.put(DataBaseHelper.SESSION_TABLE_ClASS_TYPE_COLUMN,entry.getType());
         database.insert(DataBaseHelper.SESSIONS_TABLE_NAME,null,values);
         database.close();

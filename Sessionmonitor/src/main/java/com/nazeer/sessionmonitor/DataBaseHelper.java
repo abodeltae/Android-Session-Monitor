@@ -23,19 +23,19 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 
     private void makeBuildSessionsTableQuery() {
 
-        buildSessionsTableQuery="CREATE TABLE "+SESSIONS_TABLE_NAME +"("+
+        buildSessionsTableQuery="CREATE TABLE "+SESSIONS_TABLE_NAME +"( "+
                   SESSION_TABLE_ID_COLUMN+" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL , " +
                 SESSION_TABLE_START_TIME_MILLIS_COLUMN +" INTEGER NOT NULL ," +
-                SESSION_TABLE_END_TIME_MILLIS_COLUMN +" INTEGER NOT NULL ," +
-                SESSION_TABLE_DURATION_MILLIS_COLUMN+ "INTEGER NOT NULL ,"+
-                SESSION_TABLE_ClASS_NAME_COLUMN+" TEXT NOT NULL UNIQUE ," +
+                SESSION_TABLE_END_TIME_MILLIS_COLUMN +" INTEGER NOT NULL , " +
+                SESSION_TABLE_DURATION_MILLIS_COLUMN+ " INTEGER NOT NULL , "+
+                SESSION_TABLE_ClASS_NAME_COLUMN+" TEXT NOT NULL UNIQUE , " +
                 SESSION_TABLE_ClASS_TYPE_COLUMN+" TEXT "+
                 ");";
     }
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
-        sqLiteDatabase.rawQuery(buildSessionsTableQuery,null);
+        sqLiteDatabase.execSQL(buildSessionsTableQuery);
     }
 
     @Override

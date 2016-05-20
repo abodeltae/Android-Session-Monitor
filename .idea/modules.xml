@@ -2,9 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/SessionMonitorExample.iml" filepath="$PROJECT_DIR$/SessionMonitorExample.iml" />
       <module fileurl="file://$PROJECT_DIR$/Sessionmonitor/Sessionmonitor.iml" filepath="$PROJECT_DIR$/Sessionmonitor/Sessionmonitor.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/sessionmonitor.iml" filepath="$PROJECT_DIR$/sessionmonitor.iml" />
     </modules>
   </component>
 </project>
