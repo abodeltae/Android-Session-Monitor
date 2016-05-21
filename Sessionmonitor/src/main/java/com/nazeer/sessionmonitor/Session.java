@@ -3,6 +3,8 @@ package com.nazeer.sessionmonitor;
 import android.app.Activity;
 import android.support.v4.app.Fragment;
 
+import com.nazeer.sessionmonitor.models.SessionEntry;
+
 import java.util.Calendar;
 
 /**
@@ -28,6 +30,10 @@ public class Session {
         this.name=name;
         this.type=type;
     }
+
+    /**
+     * should be used inside onResume method in the activity or fragment to be monitored
+     */
     public void onResume(){
         isResumed=true;
         if(isVisible){
@@ -41,6 +47,9 @@ public class Session {
         startTimeMillis=calendar.getTimeInMillis();
     }
 
+    /**
+     * should be used inside onStop method in the activity or fragment to be monitored
+     */
     public void onStop(){
         isResumed=false;
         if(isVisible){
@@ -48,6 +57,9 @@ public class Session {
         }
 
     }
+    /**
+     * should be used inside onResume method in the  fragment to be monitored
+     */
     public void onHiddenChanged(boolean hidden){
         if(hidden){
             isVisible=false;

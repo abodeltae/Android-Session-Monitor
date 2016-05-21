@@ -6,6 +6,10 @@ import android.database.Cursor;
 import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
 
+import com.nazeer.sessionmonitor.models.ScreenReportItem;
+import com.nazeer.sessionmonitor.models.SessionEntry;
+import com.nazeer.sessionmonitor.util.DataBaseHelper;
+
 import java.util.ArrayList;
 
 /**
@@ -54,6 +58,7 @@ public class SessionMonitorManager {
         entry.setType(cursor.getString(cursor.getColumnIndex(DataBaseHelper.SESSION_TABLE_ClASS_TYPE_COLUMN)));
         return entry;
     }
+
     /**
     * get a full list of the saved sessions
     * @return  an arraylist containing all the entries logged
@@ -88,8 +93,11 @@ public class SessionMonitorManager {
         database.close();
         return list;
     }
-
-    public ArrayList<String >getEntryNames(){
+    /**
+     * get a list of all the saved screen names
+     * @return arraylist of strings representing the screen names
+     */
+    public ArrayList<String > getScreenNames(){
         SQLiteDatabase database = helper.getWritableDatabase();
         String query=" SELECT DISTINCT "+DataBaseHelper.SESSION_TABLE_ClASS_NAME_COLUMN+ " FROM "+DataBaseHelper.SESSIONS_TABLE_NAME;
         Cursor cursor=database.rawQuery(query,null);
@@ -100,6 +108,11 @@ public class SessionMonitorManager {
         database.close();
         return list;
     }
+
+    /**
+     * get a list of all the saved screen types
+     * @return arraylist of strings representing the screen types
+     */
     public ArrayList<String>getTypes(){
         SQLiteDatabase database = helper.getWritableDatabase();
         String query=" SELECT DISTINCT "+DataBaseHelper.SESSION_TABLE_ClASS_TYPE_COLUMN+ " FROM "+DataBaseHelper.SESSIONS_TABLE_NAME;
@@ -117,7 +130,7 @@ public class SessionMonitorManager {
      * @param screenName name of the screen
      * @return ScreenReportItem
      */
-    public ScreenReportItem getClassReport(String screenName){
+    public ScreenReportItem getScreenReport(String screenName){
         ScreenReportItem item=new ScreenReportItem();
         item.setName(screenName);
         item.setSessionEntries(getEntries(screenName));
@@ -161,18 +174,88 @@ public class SessionMonitorManager {
         return 0;
     }
 
+    /**
+     * get the total duration of the monitored activities
+     * @return sum durations im milliseconds
+     */
+    public long getTotalDurationForActivities(){
+        return getTotalDurationForType("activity");
+    }
 
-    public ArrayList<ScreenReportItem> getReportForClasses(ArrayList<String>classNames){
+    /**
+     * get the total duration of the monitored fragments
+     * @return sum durations im milliseconds
+     */
+    public long getTotalDurationForFragments(){
+        return getTotalDurationForType("fragment");
+    }
+    /**
+     * generates a report of the given screens
+     * @param screenNames list of the wanted screen names
+     * @return arraylist of ScreenReport for the given screen names
+     */
+
+    public ArrayList<ScreenReportItem> getReportForScreens(ArrayList<String>screenNames){
         ArrayList <ScreenReportItem>list=new ArrayList<>();
-        for (int i = 0; i <classNames.size() ; i++) {
-            list.add(getClassReport(classNames.get(i)));
+        for (int i = 0; i <screenNames.size() ; i++) {
+            list.add(getScreenReport(screenNames.get(i)));
         }
         return list;
     }
 
-     public ArrayList<ScreenReportItem> getReportForAllclasses(){
-        ArrayList<String> classNames = getEntryNames();
-        return getReportForClasses(classNames);
+    /**
+     * generates a full report of all the screens logged and saved
+     * @return
+     */
+    public ArrayList<ScreenReportItem> getReportForAllScreens(){
+        ArrayList<String> classNames = getScreenNames();
+        return getReportForScreens(classNames);
+    }
+
+    public ArrayList<ScreenReportItem> getReportForType(String type){
+        ArrayList<String> classNames = getScreenNamesForType(type);
+        return getReportForScreens(classNames);
+    }
+    /**
+     * generates a full report of all the screens with type activity
+     * @return
+     */
+    public ArrayList<ScreenReportItem>getReportForActivities(){
+        return getReportForType("activity");
+    }
+
+    /**
+     * generates a full report of all the screens with type fragment
+     * @return
+     */
+    public ArrayList<ScreenReportItem>getReportForFragments(){
+        return getReportForType("fragment");
+    }
+
+
+    /**
+     * returns screen names that is of the same specified type
+     * @param type
+     * @return
+     */
+    public ArrayList<String> getScreenNamesForType(String type) {
+        ArrayList <String>names=new ArrayList<>();
+        type=DatabaseUtils.sqlEscapeString(type);
+        String query ="select DISTINCT "+DataBaseHelper.SESSION_TABLE_ClASS_NAME_COLUMN + " from "+DataBaseHelper.SESSIONS_TABLE_NAME +
+                " where "+DataBaseHelper.SESSION_TABLE_ClASS_TYPE_COLUMN +" = "+type;
+        SQLiteDatabase database = helper.getReadableDatabase();
+        Cursor cursor=database.rawQuery(query,null);
+        while (cursor.moveToNext()){
+            names.add(cursor.getString(cursor.getColumnIndex(DataBaseHelper.SESSION_TABLE_ClASS_NAME_COLUMN)));
+        }
+        return names;
+    }
+
+    /**
+     * Deletes all saved data and logs
+     */
+    public void reset(){
+        helper.reset();
     }
 
 

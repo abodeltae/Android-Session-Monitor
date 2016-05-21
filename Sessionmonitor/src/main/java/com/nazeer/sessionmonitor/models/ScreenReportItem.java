@@ -1,4 +1,6 @@
-package com.nazeer.sessionmonitor;
+package com.nazeer.sessionmonitor.models;
+
+import com.nazeer.sessionmonitor.models.SessionEntry;
 
 import java.util.ArrayList;
 

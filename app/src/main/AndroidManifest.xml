@@ -3,8 +3,8 @@
     package="com.nazeer.sessionmonitorexample">
 
     <application
-        android:allowBackup="true"
         android:name=".App"
+        android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
@@ -16,10 +16,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Activity1" />
-        <activity android:name=".Activity2" />
+        <activity android:name=".ExampleMonitoredActivity" />
+        <activity android:name=".ExampleActivityWithSessionObject" />
         <activity android:name=".FragmentActivity" />
-        <activity android:name=".ActivitySavedData"></activity>
+        <activity android:name=".ActivitySavedData" />
+        <activity android:name=".ReportActivity"></activity>
     </application>
 
 </manifest>

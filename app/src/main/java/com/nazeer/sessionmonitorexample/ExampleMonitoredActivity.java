@@ -1,11 +1,10 @@
 package com.nazeer.sessionmonitorexample;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-import com.nazeer.sessionmonitor.MonitoredActivity;
+import com.nazeer.sessionmonitor.monitored_screens.MonitoredActivity;
 
-public class Activity1 extends MonitoredActivity {
+public class ExampleMonitoredActivity extends MonitoredActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

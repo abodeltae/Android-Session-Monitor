@@ -1,13 +1,12 @@
 package com.nazeer.sessionmonitorexample;
 
 import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RelativeLayout;
 
-import com.nazeer.sessionmonitor.MonitoredActivity;
+import com.nazeer.sessionmonitor.monitored_screens.MonitoredActivity;
 
 public class FragmentActivity extends MonitoredActivity implements View.OnClickListener {
     Button replaceBt,hideBt,showBt;

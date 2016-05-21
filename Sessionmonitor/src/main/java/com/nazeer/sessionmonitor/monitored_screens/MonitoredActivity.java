@@ -1,8 +1,10 @@
-package com.nazeer.sessionmonitor;
+package com.nazeer.sessionmonitor.monitored_screens;
 
 import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.support.v7.app.AppCompatActivity;
+
+import com.nazeer.sessionmonitor.Session;
 
 /**
  * Created by nazeer on 5/20/16.

@@ -1,4 +1,4 @@
-package com.nazeer.sessionmonitor;
+package com.nazeer.sessionmonitor.util;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
@@ -42,5 +42,12 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase db, int i, int i1) {
         db.execSQL("DROP TABLE IF EXISTS " + SESSIONS_TABLE_NAME);
         onCreate(db);
+    }
+
+    public void reset(){
+        SQLiteDatabase db = getReadableDatabase();
+        db.execSQL("DROP TABLE IF EXISTS " + SESSIONS_TABLE_NAME);
+        onCreate(db);
+        db.close();
     }
 }

@@ -5,7 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-import com.nazeer.sessionmonitor.MonitoredActivity;
+import com.nazeer.sessionmonitor.monitored_screens.MonitoredActivity;
 
 public class MainActivity extends MonitoredActivity implements View.OnClickListener {
     Button button1,button2,button3,showSavedDataBt;
@@ -32,10 +32,10 @@ public class MainActivity extends MonitoredActivity implements View.OnClickListe
         int id=view.getId();
         switch (id){
             case R.id.button1:
-                startActivity(new Intent(this,Activity1.class));
+                startActivity(new Intent(this,ExampleMonitoredActivity.class));
                 break;
             case R.id.button2:
-                startActivity(new Intent(this,Activity2.class));
+                startActivity(new Intent(this,ExampleActivityWithSessionObject.class));
                 break;
             case R.id.button3:
                 startActivity(new Intent(this,FragmentActivity.class));

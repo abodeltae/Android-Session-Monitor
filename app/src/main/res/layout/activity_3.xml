@@ -11,22 +11,35 @@
     android:orientation="vertical"
     >
     <Button
-        android:layout_width="wrap_content"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:id="@+id/replaceFragmentButton"
         android:text="replce Fragment"
+        android:background="@drawable/round_corner_item"
+        android:padding="10dp"
+        android:layout_margin="10dp"
+        android:textColor="@android:color/white"
         />
     <Button
-        android:layout_width="wrap_content"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:text="hide Fragment"
         android:id="@+id/hideBt"
+        android:background="@drawable/round_corner_item"
+        android:padding="10dp"
+        android:layout_margin="10dp"
+        android:textColor="@android:color/white"
         />
     <Button
-        android:layout_width="wrap_content"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:id="@+id/showBt"
         android:text="show fragment"
+        android:background="@drawable/round_corner_item"
+        android:padding="10dp"
+        android:layout_margin="10dp"
+
+        android:textColor="@android:color/white"
         />
     <RelativeLayout
         android:layout_width="200dp"

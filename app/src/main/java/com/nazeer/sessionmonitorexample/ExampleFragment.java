@@ -6,8 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.nazeer.sessionmonitor.MonitoredFragment;
-import com.nazeer.sessionmonitor.MonitoredSupportFragment;
+import com.nazeer.sessionmonitor.monitored_screens.MonitoredSupportFragment;
 
 /**
  * Created by nazeer on 5/20/16.

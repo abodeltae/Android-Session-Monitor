@@ -1,4 +1,4 @@
-package com.nazeer.sessionmonitor;
+package com.nazeer.sessionmonitor.models;
 
 /**
  * Created by nazeer on 18/05/16.
