@@ -12,7 +12,7 @@ SessionMonitorManager.init(this);
 
 For Activities you can just extend ***`MonitoredActivity`*** 
 
- Or if you wish you can just create an instance of  **`SessionHelper`** in your activity and pass onPause and onResume Events like this 
+ Or if you wish you can create an instance of  **`SessionHelper`** in your activity and pass onPause and onResume Events like this 
 ```java 
 SessionHelper session=new SessionHelper(this);
 
@@ -30,7 +30,7 @@ SessionHelper session=new SessionHelper(this);
 ```
 For Fragments you can just extend ***`MonitoredFragment`*** or ***`MonitoredSupportFragment`***
 
- Or if you wish you can just create an instance of  **`SessionHelper`** in your Fragment and pass onPause and onResume Events like this 
+ Or if you wish you can  create an instance of  **`SessionHelper`** in your Fragment and pass onPause and onResume Events like this 
 ```java 
     SessionHelper session=new SessionHelper(this);
     @Override
