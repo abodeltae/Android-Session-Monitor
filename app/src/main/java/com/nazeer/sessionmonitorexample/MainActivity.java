@@ -41,7 +41,7 @@ public class MainActivity extends MonitoredActivity implements View.OnClickListe
                 startActivity(new Intent(this,FragmentActivity.class));
                 break;
             case R.id.buttonShowaData:
-                startActivity(new Intent(this,ActivitySavedData.class));
+                startActivity(new Intent(this,ShowDataActivity.class));
                 break;
         }
     }

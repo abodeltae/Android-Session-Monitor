@@ -14,7 +14,7 @@ import com.nazeer.sessionmonitor.SessionMonitorManager;
 
 import java.util.ArrayList;
 
-public class ActivitySavedData extends AppCompatActivity implements View.OnClickListener {
+public class ShowDataActivity extends AppCompatActivity implements View.OnClickListener {
     TextView activitiesTimeTv ,fragmentsTimeTv;
     Button activityDetailsBt,fragmnetDetailBt,resetBt;
     private SessionMonitorManager sessionMonitor;
@@ -25,7 +25,7 @@ public class ActivitySavedData extends AppCompatActivity implements View.OnClick
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_activity_saved_data);
         sessionMonitor=SessionMonitorManager.getInstance();
-        ArrayList<String> entrynames = sessionMonitor.getScreenNames();
+/*        ArrayList<String> entrynames = sessionMonitor.getScreenNames();
         ArrayList<ScreenReportItem> report = sessionMonitor.getReportForAllScreens();
         ArrayList<String> types = sessionMonitor.getTypes();
         long activitiesDuration = sessionMonitor.getTotalDurationForType("activity");
@@ -33,7 +33,7 @@ public class ActivitySavedData extends AppCompatActivity implements View.OnClick
         ArrayList<ScreenReportItem> fragmentsReport = sessionMonitor.getReportForType("fragment");
         ArrayList<ScreenReportItem>activitiesReport=sessionMonitor.getReportForType("activity");
 
-        Log.w("","");
+        Log.w("","");*/
         initViews();
         getData();updateUi();
     }

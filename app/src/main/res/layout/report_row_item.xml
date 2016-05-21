@@ -13,6 +13,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/scrennNameTv"
+            android:layout_toRightOf="@+id/tv1"
             android:layout_alignParentRight="true"
             android:textColor="@color/mBlue"
             />
@@ -20,7 +21,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="name"
+            android:id="@+id/tv1"
             android:textColor="@color/mBlue"
+            android:layout_marginRight="5dp"
             />
         <TextView
             android:layout_width="wrap_content"
@@ -34,6 +37,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="duration"
+            android:id="@+id/tv2"
             android:textColor="@color/mBlue"
             android:layout_below="@+id/scrennNameTv"
             />

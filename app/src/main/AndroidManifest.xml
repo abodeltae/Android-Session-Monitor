@@ -19,7 +19,7 @@
         <activity android:name=".ExampleMonitoredActivity" />
         <activity android:name=".ExampleActivityWithSessionObject" />
         <activity android:name=".FragmentActivity" />
-        <activity android:name=".ActivitySavedData" />
+        <activity android:name=".ShowDataActivity" />
         <activity android:name=".ReportActivity"></activity>
     </application>
 
