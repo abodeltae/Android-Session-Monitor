@@ -3,7 +3,7 @@ Android Session Monitor is a simple library to log the start/end time and durati
 
 ## How to use 
 
-First init the library by calling init from your application class 
+First init the library by calling init from your **`application`** class 
 
 ```java 
 SessionMonitorManager.init(this);
@@ -141,7 +141,7 @@ long getTotalDurationForFragments()
 get the sume of visible durations for fragments in milliseconds
 
 ```java 
-getTotalDurationForType(String type)
+long getTotalDurationForType(String type)
 ```
 get the sume of visible durations for the given type  in milliseconds
 
