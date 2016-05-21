@@ -1,5 +1,5 @@
 # Android-Session-Monitor
-Android Session Monitor is a simple library to log the start/end time and duration of how long a screen has been visible in android 
+Android Session Monitor is a simple library to log the start/end time and duration of how long a screen has been visible in your application 
 
 ## How to use 
 
@@ -12,7 +12,7 @@ SessionMonitorManager.init(this);
 
 For Activities you can just extend ***`MonitoredActivity`*** 
 
- or if you wish you can just create an instance of  SessionHelper in your activity and pass onPause and onResume Events like this 
+ Or if you wish you can just create an instance of  **`SessionHelper`** in your activity and pass onPause and onResume Events like this 
 ```java 
 SessionHelper session=new SessionHelper(this);
 
@@ -30,7 +30,7 @@ SessionHelper session=new SessionHelper(this);
 ```
 For Fragments you can just extend ***`MonitoredFragment`*** or ***`MonitoredSupportFragment`***
 
- or if you wish you can just create an instance of  SessionHelper in your Fragment and pass onPause and onResume Events like this 
+ Or if you wish you can just create an instance of  **`SessionHelper`** in your Fragment and pass onPause and onResume Events like this 
 ```java 
     SessionHelper session=new SessionHelper(this);
     @Override
@@ -53,7 +53,7 @@ For Fragments you can just extend ***`MonitoredFragment`*** or ***`MonitoredSupp
 ```
 ### Custom Views Monitoring 
 In case you need to monitor something other than Fragments or Activities 
-you need to create a session helper and specify the name and type of screen yourself 
+you need to create a **`SessionHelper`** and specify the name and type of screen yourself 
 call onStop and onResume according to your need 
 ```java 
     SessionHelper session=new SessionHelper( name, type);
