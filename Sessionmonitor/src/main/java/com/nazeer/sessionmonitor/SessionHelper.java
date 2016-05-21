@@ -10,23 +10,23 @@ import java.util.Calendar;
 /**
  * Created by nazeer on 19/05/16.
  */
-public class Session {
+public class SessionHelper {
     private String name, type;
     private long startTimeMillis,endTimeMillis,durationInMillis;
     private boolean isResumed=true,isVisible=true;
-    public Session(Activity activity){
+    public SessionHelper(Activity activity){
         name=activity.getClass().getName();
         type="activity";
     }
-    public Session (Fragment fragment){
+    public SessionHelper(Fragment fragment){
         name=fragment.getClass().getName();
         type="fragment";
     }
-    public Session (android.app.Fragment fragment){
+    public SessionHelper(android.app.Fragment fragment){
         name=fragment.getClass().getName();
         type="fragment";
     }
-    public Session(String name,String type){
+    public SessionHelper(String name, String type){
         this.name=name;
         this.type=type;
     }

@@ -3,10 +3,10 @@ package com.nazeer.sessionmonitorexample;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-import com.nazeer.sessionmonitor.Session;
+import com.nazeer.sessionmonitor.SessionHelper;
 
 public class ExampleActivityWithSessionObject extends AppCompatActivity {
-Session session=new Session(this);
+SessionHelper session=new SessionHelper(this);
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

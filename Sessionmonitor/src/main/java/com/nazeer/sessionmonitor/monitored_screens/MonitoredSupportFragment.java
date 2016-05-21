@@ -2,13 +2,13 @@ package com.nazeer.sessionmonitor.monitored_screens;
 
 import android.support.v4.app.Fragment;
 
-import com.nazeer.sessionmonitor.Session;
+import com.nazeer.sessionmonitor.SessionHelper;
 
 /**
  * Created by nazeer on 5/20/16.
  */
 public class MonitoredSupportFragment extends Fragment {
-    Session session=new Session(this);
+    SessionHelper session=new SessionHelper(this);
     @Override
     public void onResume() {
         super.onResume();
