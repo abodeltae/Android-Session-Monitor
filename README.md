@@ -12,7 +12,7 @@ SessionMonitorManager.init(this);
 
 For Activities you can just extend ***`MonitoredActivity`*** 
 
- Or if you wish you can just create an instance of  **`SessionHelper`** in your activity and pass onPause and onResume Events like this 
+ Or if you wish you can create an instance of  **`SessionHelper`** in your activity and pass onPause and onResume Events like this 
 ```java 
 SessionHelper session=new SessionHelper(this);
 
@@ -30,7 +30,7 @@ SessionHelper session=new SessionHelper(this);
 ```
 For Fragments you can just extend ***`MonitoredFragment`*** or ***`MonitoredSupportFragment`***
 
- Or if you wish you can just create an instance of  **`SessionHelper`** in your Fragment and pass onPause and onResume Events like this 
+ Or if you wish you can  create an instance of  **`SessionHelper`** in your Fragment and pass onPause and onResume Events like this 
 ```java 
     SessionHelper session=new SessionHelper(this);
     @Override
@@ -79,9 +79,9 @@ name : the name of the screen
 
 type : the type of the screen 
 
-startTimeMillis
+startTimeMillis  - unix time
 
-endTimeMillis
+endTimeMillis - unix time
 
 durationMillis
 ```java 
@@ -143,7 +143,7 @@ get the sume of visible durations for fragments in milliseconds
 ```java 
 long getTotalDurationForType(String type)
 ```
-get the sume of visible durations for the given type  in milliseconds
+get the sum of visible durations for the given type  in milliseconds
 
 
 
