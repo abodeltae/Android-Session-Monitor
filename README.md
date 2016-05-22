@@ -79,9 +79,9 @@ name : the name of the screen
 
 type : the type of the screen 
 
-startTimeMillis
+startTimeMillis  - unix time
 
-endTimeMillis
+endTimeMillis - unix time
 
 durationMillis
 ```java 
