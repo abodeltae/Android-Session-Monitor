@@ -143,7 +143,7 @@ get the sume of visible durations for fragments in milliseconds
 ```java 
 long getTotalDurationForType(String type)
 ```
-get the sume of visible durations for the given type  in milliseconds
+get the sum of visible durations for the given type  in milliseconds
 
 
 
