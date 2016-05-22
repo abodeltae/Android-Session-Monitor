@@ -6,6 +6,7 @@ import android.widget.ListView;
 
 import com.nazeer.sessionmonitor.models.ScreenReportItem;
 import com.nazeer.sessionmonitor.SessionMonitorManager;
+import com.nazeer.sessionmonitorexample.adapters.ReportAdapter;
 
 import java.util.ArrayList;
 

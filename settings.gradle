@@ -1,1 +1,1 @@
-include ':app', ':Sessionmonitor'
+include ':ExampleApp', ':Sessionmonitor'

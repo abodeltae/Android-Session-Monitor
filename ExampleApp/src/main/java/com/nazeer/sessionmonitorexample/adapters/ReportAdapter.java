@@ -1,4 +1,4 @@
-package com.nazeer.sessionmonitorexample;
+package com.nazeer.sessionmonitorexample.adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -8,6 +8,7 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import com.nazeer.sessionmonitor.models.ScreenReportItem;
+import com.nazeer.sessionmonitorexample.R;
 
 import java.util.ArrayList;
 

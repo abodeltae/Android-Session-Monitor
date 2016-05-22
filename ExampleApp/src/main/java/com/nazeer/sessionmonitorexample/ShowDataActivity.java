@@ -25,15 +25,6 @@ public class ShowDataActivity extends AppCompatActivity implements View.OnClickL
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_activity_saved_data);
         sessionMonitor=SessionMonitorManager.getInstance();
-/*        ArrayList<String> entrynames = sessionMonitor.getScreenNames();
-        ArrayList<ScreenReportItem> report = sessionMonitor.getReportForAllScreens();
-        ArrayList<String> types = sessionMonitor.getTypes();
-        long activitiesDuration = sessionMonitor.getTotalDurationForType("activity");
-        ArrayList<SessionEntry> entries = sessionMonitor.getEntries();
-        ArrayList<ScreenReportItem> fragmentsReport = sessionMonitor.getReportForType("fragment");
-        ArrayList<ScreenReportItem>activitiesReport=sessionMonitor.getReportForType("activity");
-
-        Log.w("","");*/
         initViews();
         getData();updateUi();
     }

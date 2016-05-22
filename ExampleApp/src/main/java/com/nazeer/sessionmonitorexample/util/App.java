@@ -1,4 +1,4 @@
-package com.nazeer.sessionmonitorexample;
+package com.nazeer.sessionmonitorexample.util;
 
 import android.app.Application;
 
