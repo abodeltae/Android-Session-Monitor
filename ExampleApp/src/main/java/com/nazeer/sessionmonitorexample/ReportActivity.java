@@ -11,12 +11,9 @@ import com.nazeer.sessionmonitorexample.adapters.ReportAdapter;
 import java.util.ArrayList;
 
 public class ReportActivity extends AppCompatActivity {
-        String type;
     SessionMonitorManager manager;
     private ArrayList<ScreenReportItem> list;
-    private Object data;
     private ListView listView;
-    private ReportAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +27,7 @@ public class ReportActivity extends AppCompatActivity {
 
     private void updateUi() {
 
-        adapter=new ReportAdapter(this,list);
+        ReportAdapter adapter = new ReportAdapter(this, list);
         listView.setAdapter(adapter);
     }
 

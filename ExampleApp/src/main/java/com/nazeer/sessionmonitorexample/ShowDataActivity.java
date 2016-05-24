@@ -15,8 +15,8 @@ import com.nazeer.sessionmonitor.SessionMonitorManager;
 import java.util.ArrayList;
 
 public class ShowDataActivity extends AppCompatActivity implements View.OnClickListener {
-    TextView activitiesTimeTv ,fragmentsTimeTv;
-    Button activityDetailsBt,fragmnetDetailBt,resetBt;
+    private TextView activitiesTimeTv ,fragmentsTimeTv;
+    private Button activityDetailsBt,fragmnetDetailBt,resetBt;
     private SessionMonitorManager sessionMonitor;
     private long activitiesDuration,fragmentsDuration;
 
@@ -61,8 +61,8 @@ public class ShowDataActivity extends AppCompatActivity implements View.OnClickL
     private void getData(){
          activitiesDuration = sessionMonitor.getTotalDurationForActivities();
         fragmentsDuration=sessionMonitor.getTotalDurationForFragments();
-
     }
+
     private void updateUi(){
         activitiesTimeTv.setText(activitiesDuration/1000+" seconds");
         fragmentsTimeTv.setText(fragmentsDuration/1000+ " seconds");

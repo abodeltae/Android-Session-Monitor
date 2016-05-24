@@ -14,6 +14,7 @@ public class SessionHelper {
     private String name, type;
     private long startTimeMillis,endTimeMillis,durationInMillis;
     private boolean isResumed=true,isVisible=true;
+
     public SessionHelper(Activity activity){
         name=activity.getClass().getName();
         type="activity";

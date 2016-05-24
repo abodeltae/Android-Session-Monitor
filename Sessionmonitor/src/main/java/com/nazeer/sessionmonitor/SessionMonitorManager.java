@@ -2,6 +2,7 @@ package com.nazeer.sessionmonitor;
 
 import android.app.Application;
 import android.content.ContentValues;
+import android.content.Context;
 import android.database.Cursor;
 import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
@@ -17,16 +18,12 @@ import java.util.ArrayList;
  */
 public class SessionMonitorManager {
     private static SessionMonitorManager instance;
-    private Application applicationContext;
     private static DataBaseHelper helper;
     private SessionMonitorManager(){}
 
-    public static void init(Application applicationContext){
-        helper=new DataBaseHelper(applicationContext);
+    public static void init(Context context){
+        helper=new DataBaseHelper(context);
         instance=new SessionMonitorManager();
-        instance.applicationContext=applicationContext;
-
-
     }
     public static SessionMonitorManager getInstance(){
         if(instance==null){
@@ -134,7 +131,7 @@ public class SessionMonitorManager {
         ScreenReportItem item=new ScreenReportItem();
         item.setName(screenName);
         item.setSessionEntries(getEntries(screenName));
-        item.setTotalDuration(getTotalDurationForClass(screenName));
+        item.setTotalDuration(getTotalDurationForScreen(screenName));
         return item;
     }
 
@@ -143,7 +140,7 @@ public class SessionMonitorManager {
      * @param screenName
      * @return long the sum of durations in milliseconds
      */
-    public long getTotalDurationForClass(String screenName) {
+    public long getTotalDurationForScreen(String screenName) {
         screenName=DatabaseUtils.sqlEscapeString(screenName);
         SQLiteDatabase database = helper.getWritableDatabase();
         String query=String.format("select sum(%s) as sumResult from %s where %s=%s",DataBaseHelper.SESSION_TABLE_DURATION_MILLIS_COLUMN,

@@ -2,10 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/Android-Session-Monitor.iml" filepath="$PROJECT_DIR$/Android-Session-Monitor.iml" />
       <module fileurl="file://$PROJECT_DIR$/ExampleApp/ExampleApp.iml" filepath="$PROJECT_DIR$/ExampleApp/ExampleApp.iml" />
       <module fileurl="file://$PROJECT_DIR$/Sessionmonitor/Sessionmonitor.iml" filepath="$PROJECT_DIR$/Sessionmonitor/Sessionmonitor.iml" />
-      <module fileurl="file://$PROJECT_DIR$/ExampleApp/app.iml" filepath="$PROJECT_DIR$/ExampleApp/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/sessionmonitor.iml" filepath="$PROJECT_DIR$/sessionmonitor.iml" />
     </modules>
   </component>
 </project>
