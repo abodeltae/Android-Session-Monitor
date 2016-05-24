@@ -3,7 +3,7 @@ Android Session Monitor is a simple library to log the start/end time and durati
 
 ## How to use 
 
-First init the library by calling init from your **`application`** class 
+First init the library by calling init and providing a Context . 
 
 ```java 
 SessionMonitorManager.init(this);
